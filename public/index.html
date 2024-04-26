@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Hunter</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Sixtyfour&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="game-board">
+        <canvas width="800px" height="600px"></canvas>
+        <div id="info-bar">
+            <svg xmlns="http://www.w3.org/2000/svg" id="counter">
+                <text x="10" y="35">
+                    TIME:<tspan id="time-remaining">20</tspan>
+                </text>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="counter">
+                <text x="150" y="35">
+                    YOUR SCORE:<tspan id="player1-score">0</tspan>
+                </text>
+            </svg>
+        </div>
+    </div>
+    <div id="startpage-overlay" class="overlay">
+        <svg xmlns="http://www.w3.org/2000/svg" id="startpage" width="800" height="600">
+            <defs>
+                <linearGradient id="title-fill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0.2" stop-color="#51575f" />
+                    <stop offset="0.7" stop-color="white" />
+                    <stop offset="1" stop-color="black" />
+                </linearGradient>
+            </defs>
+            <text x="200" y="120" id="title">Monster Hunter</text>
+            <text x="150" y="200" id="single-player" class="button">Single Player</text>
+            <text x="150" y="250" id="double-player" class="button">Double Player</text>
+            <text x="150" y="300" id="instruction" class="button">How To Play</text>
+            <text x="150" y="350" id="ranking" class="button">Ranking</text>
+        </svg>
+        <div id="exit-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" id="exit-button" width="200" height="200">
+                <text x="60" y="55" id="exit" class="button">Exit</text>
+            </svg>
+        </div>
+    </div>
+    <div id="instuction-overlay">
+    </div>
+    <div id="signin-overlay" class="overlay">
+        <div class="content shadow row">
+            <form id="signin-form" class="col">
+                <div class="caption">SIGN IN</div>
+                <div class="spacer-0"></div>
+                <input id="signin-username" placeholder="Enter your username"></input>
+                <input id="signin-password" type="password" placeholder="Enter your password"></input>
+                <div class="spacer-0"></div>
+                <button type="submit">Sign In</button>
+                <div id="signin-message" class="warning center"></div>
+                <div class="spacer-grow"></div>
+            </form>
+    
+            <div class="spacer-0"></div>
+    
+            <form id="register-form" class="col">
+                <div class="caption">Create Account</div>
+                <div class="spacer-0"></div>
+                <input id="register-username" maxlength="10" placeholder="Enter your username"></input>
+                <input id="register-name" maxlength="16" placeholder="Enter your name"></input>
+                <input id="register-password" type="password" placeholder="Enter your password"></input>
+                <input id="register-confirm" type="password" placeholder="Enter your password again"></input>
+                <div class="spacer-0"></div>
+                <button type="submit">Register</button>
+                <div id="register-message" class="warning center"></div>
+            </form>
+        </div>
+    </div>
+    <div id="pairing">
+        <div><span id="player1">Player1</span> versus <span id="player2">Player2</span></div>
+    </div>
+    <script src="/socket.io/socket.io.min.js"></script>
+    <script src="scripts/socket.js"></script>
+    <script src="scripts/sprite.js"></script>
+    <script src="scripts/player.js"></script>
+    <script src="scripts/monster.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/registration.js"></script>
+    <script src="scripts/authentication.js"></script>
+    <script>
+    $(function() {
+        // Initialize the UI
+        UI.initialize();
+
+        // Validate the signin
+        Authentication.validate(
+            () => {
+                SignInForm.hide();
+                // UserPanel.update(Authentication.getUser());
+                // UserPanel.show();
+
+                Socket.connect();
+            },
+            () => { SignInForm.show(); }
+        );
+    });
+    </script>
+</body>

@@ -1,0 +1,104 @@
+body {
+    font-family: "Orbitron", sans-serif;
+}
+canvas{
+    background-size: 50%;
+    background-repeat: repeat;
+}
+#counter text {
+    font-size: 130%;
+    fill: white;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+#counter, #startpage, #startpage-overlay{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#info-bar{
+    background-color: black;
+}
+/* Start page */
+#startpage-overlay {
+    width: 800px;
+    height: 500px;
+    background: url("background.jpg");
+    background-size: cover;
+    fill:white;
+    /* text-shadow: #51575f; */
+    fill: url("#title-fill");
+    font-weight: bold;
+    stroke-width: 2px;
+    stroke: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#title {
+    font-size: 280%;
+}
+
+.button {
+    font-size: 200%;
+}
+
+.button:hover {
+    font-size: 220%;
+    cursor: pointer;
+}
+
+#exit-button {
+    position: absolute;
+    top: 220px;
+    left: 580px;
+    transform: rotate(15deg);
+    background-image: url("arrow.png");
+    width: 150px;
+    height: 100px;
+    background-size: cover;
+}
+
+/* Sign in */
+#signin-overlay {
+    position: absolute;
+    width: 480px;
+    height: 280px;
+    top: 150px;
+    left: 150px;
+    background-color: grey;
+    border: 5px solid rgb(82, 82, 86);
+    opacity: 90%;
+    display: none;
+}
+.row, .col {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+}
+#register-form {
+    width: 200px;
+}
+.col {
+    flex-direction: column; 
+}
+input {
+    border: none;
+    border-bottom: 1px solid black;
+    background: none;
+}
+input::placeholder, input:valid, input:focus {
+    color: white;
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+}
+#register-message, #signin-message {
+    font-size: 12px;
+}
+button {
+    color: wheat;
+    background-color: #51575f;
+    
+    font-family: "Orbitron", sans-serif;
+}
